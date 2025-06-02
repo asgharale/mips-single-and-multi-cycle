@@ -1,7 +1,4 @@
-## hi professor dorosti :)
-i hope you'll be good.
-
-<p><b>how to run the projects:</b></p>
+### manual to run the projects
 <i>
     single cycle:
 </i>
