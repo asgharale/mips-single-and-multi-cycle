@@ -2,7 +2,6 @@ module TopModule (
     input clk,
     input reset
 );
-    // Wires for interconnecting components
     wire [31:0] PC, Instr, ReadData1, ReadData2, ALUResult, MemData;
     wire [4:0] WriteReg;
     wire RegDst, ALUSrc, MemToReg, RegWrite, MemRead, MemWrite, Branch, Jump;

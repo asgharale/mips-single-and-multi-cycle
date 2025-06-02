@@ -14,7 +14,7 @@ module MIPS (
     DataMemory dmem (clk, MemRead, MemWrite, ALUResult, ReadData2, MemData);
 
     assign WriteReg = RegDst ? Instr[15:11] : Instr[20:16];
-    assign PC = (Branch && Zero) ? (PC + (Instr[15:0] << 2)) : (PC + 4);  // BEQ
+    assign PC = (Branch && Zero) ? (PC + (Instr[15:0] << 2)) : (PC + 4);
     assign MemToRegData = MemToReg ? MemData : ALUResult;
 
 endmodule

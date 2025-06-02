@@ -5,9 +5,8 @@ module RegisterBank (
     input [31:0] dataToWrite,
     output [31:0] dataOut1, dataOut2
 );
-    reg [31:0] registers [31:0];  // 32 registers, each 32 bits wide
+    reg [31:0] registers [31:0];
 
-    // Reset registers to 0 on reset
     always @(posedge clk or posedge reset) begin
         if (reset) begin
             registers[0] <= 32'b0;
@@ -41,12 +40,12 @@ module RegisterBank (
             registers[28] <= 32'b0;
             registers[29] <= 32'b0;
             registers[30] <= 32'b0;
-            registers[31] <= 32'b0;  // Reset all registers
+            registers[31] <= 32'b0;
         end else if (enableWrite) begin
-            registers[writeReg] <= dataToWrite;  // Write data to register
+            registers[writeReg] <= dataToWrite;
         end
     end
 
-    assign dataOut1 = registers[readReg1];  // Read data from register
-    assign dataOut2 = registers[readReg2];  // Read data from register
+    assign dataOut1 = registers[readReg1];
+    assign dataOut2 = registers[readReg2];
 endmodule
