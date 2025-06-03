@@ -1,47 +1,46 @@
 module testbench;
     reg clk, reset;
-    reg [31:0] PC;
-    wire [31:0] Instr;
-
-    InstrMemory dut (
-        .PC(PC),
-        .Instr(Instr)
-    );
-
-    always #5 clk = ~clk;  // Clock with a period of 10 time units
-
-    // Apply reset and test the design with random inputs
+    
+    TopModule dut (.clk(clk), .reset(reset));
+    
+    always #5 clk = ~clk;
+    
     initial begin
-        // Initialize signals
-        clk = 0;
-        reset = 1;
-        PC = 32'h0;  // Initialize PC to 0 (start from the first instruction)
-
-        // Apply reset for some time
-        #5 reset = 1;
-        #10 reset = 0; // Apply reset for enough time
-
-        // Simulate some PC changes
-        #10 PC = 32'h4;
-        #10 PC = 32'h8;
-        #10 PC = 32'hC;
-        #10 PC = 32'h10;
-
-        // Optionally simulate a branch or jump (this part is random too)
-        #20 PC = 32'h20; // Jump to a new location (example of a jump)
-
-        #100;  // Wait for 100 time units
-        $finish; // Finish the simulation
-    end
-
-    // Monitor signal values to help debug
-    initial begin
-        $monitor("At time %0t: PC = %h, Instr = %h, reset = %b", $time, PC, Instr, reset);
-    end
-
-    // Generate the VCD file for waveform visualization
-    initial begin
-        $dumpfile("simulation.vcd");  // The VCD output file name
-        $dumpvars(0, testbench);      // Dump all variables in the testbench
+        clk = 0; reset = 1;
+        $dumpfile("mips.vcd");
+        $dumpvars(0);
+        #10 reset = 0;
+        
+        $display("Time\tPC\t\tInstruction\tReg1\tReg2\tReg3\tALURes\tZero");
+        $display("------------------------------------------------------------------");
+        
+        forever begin
+            @(posedge clk);
+            #1;
+            $display("%0t\t%h\t%h\t%h\t%h\t%h\t%h\t%b", 
+                    $time,
+                    dut.PC,
+                    dut.Instr,
+                    dut.regfile.regs[1],
+                    dut.regfile.regs[2],
+                    dut.regfile.regs[3],
+                    dut.alu.ALUResult,
+                    dut.alu.Zero);
+            
+            // Check for halt condition
+            if (dut.PC == 32'h00000014 && dut.Instr == 32'h08000005) begin
+                $display("\nTest completed:");
+                if (dut.regfile.regs[3] == 32'h1)
+                    $display("PASS: $3 = 1 (branch taken correctly)");
+                else
+                    $display("FAIL: $3 = %h (branch failed)", dut.regfile.regs[3]);
+                $finish;
+            end
+            
+            if ($time > 200) begin
+                $display("Timeout!");
+                $finish;
+            end
+        end
     end
 endmodule

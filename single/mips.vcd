@@ -1,0 +1,352 @@
+$date
+	Tue Jun 03 09:21:08 2025
+$end
+$version
+	Icarus Verilog
+$end
+$timescale
+	1s
+$end
+$scope module testbench $end
+$var reg 1 ! clk $end
+$var reg 1 " reset $end
+$scope module dut $end
+$var wire 1 ! clk $end
+$var wire 1 " reset $end
+$var wire 1 # Zero $end
+$var wire 5 $ WriteReg [4:0] $end
+$var wire 32 % SignImm [31:0] $end
+$var wire 1 & RegWrite $end
+$var wire 1 ' RegDst $end
+$var wire 32 ( ReadData2 [31:0] $end
+$var wire 32 ) ReadData1 [31:0] $end
+$var wire 1 * MemWrite $end
+$var wire 32 + MemToRegData [31:0] $end
+$var wire 1 , MemToReg $end
+$var wire 1 - MemRead $end
+$var wire 32 . MemData [31:0] $end
+$var wire 1 / Jump $end
+$var wire 32 0 Instr [31:0] $end
+$var wire 1 1 Branch $end
+$var wire 1 2 ALUSrc $end
+$var wire 32 3 ALUResult [31:0] $end
+$var wire 4 4 ALUOp [3:0] $end
+$var reg 32 5 PC [31:0] $end
+$var reg 32 6 PCNext [31:0] $end
+$scope module alu $end
+$var wire 32 7 B [31:0] $end
+$var wire 1 # Zero $end
+$var wire 4 8 ALUControl [3:0] $end
+$var wire 32 9 A [31:0] $end
+$var reg 32 : ALUResult [31:0] $end
+$upscope $end
+$scope module control $end
+$var wire 6 ; Opcode [5:0] $end
+$var reg 4 < ALUOp [3:0] $end
+$var reg 1 2 ALUSrc $end
+$var reg 1 1 Branch $end
+$var reg 1 / Jump $end
+$var reg 1 - MemRead $end
+$var reg 1 , MemToReg $end
+$var reg 1 * MemWrite $end
+$var reg 1 ' RegDst $end
+$var reg 1 & RegWrite $end
+$upscope $end
+$scope module dmem $end
+$var wire 32 = Address [31:0] $end
+$var wire 1 - MemRead $end
+$var wire 1 * MemWrite $end
+$var wire 1 ! clk $end
+$var wire 32 > WriteData [31:0] $end
+$var wire 32 ? ReadData [31:0] $end
+$upscope $end
+$scope module imem $end
+$var wire 32 @ Instr [31:0] $end
+$var wire 32 A PC [31:0] $end
+$upscope $end
+$scope module regfile $end
+$var wire 5 B ReadReg1 [4:0] $end
+$var wire 5 C ReadReg2 [4:0] $end
+$var wire 1 & RegWrite $end
+$var wire 32 D WriteData [31:0] $end
+$var wire 5 E WriteReg [4:0] $end
+$var wire 1 ! clk $end
+$var wire 1 " reset $end
+$var wire 32 F ReadData2 [31:0] $end
+$var wire 32 G ReadData1 [31:0] $end
+$var integer 32 H i [31:0] $end
+$upscope $end
+$upscope $end
+$upscope $end
+$enddefinitions $end
+$comment Show the parameter values. $end
+$dumpall
+$end
+#0
+$dumpvars
+b100000 H
+b0 G
+b0 F
+b1 E
+b101 D
+b1 C
+b0 B
+b0 A
+b100000000000010000000000000101 @
+b0 ?
+b0 >
+b101 =
+b10 <
+b1000 ;
+b101 :
+b0 9
+b10 8
+b101 7
+b0 6
+b0 5
+b10 4
+b101 3
+12
+01
+b100000000000010000000000000101 0
+0/
+b0 .
+0-
+0,
+b101 +
+0*
+b0 )
+b0 (
+0'
+1&
+b101 %
+b1 $
+0#
+1"
+0!
+$end
+#5
+b100000 H
+1!
+#10
+b100 6
+0!
+0"
+#15
+b10 $
+b10 E
+b10 C
+b0 (
+b0 >
+b0 F
+b100000000000100000000000000101 0
+b100000000000100000000000000101 @
+b1000 6
+b100 5
+b100 A
+1!
+#20
+0!
+#25
+1#
+b0 +
+b0 D
+b0 3
+b0 :
+b0 =
+b110 4
+b110 8
+b110 <
+11
+0&
+02
+b101 )
+b101 9
+b101 G
+b101 7
+b100 ;
+b1 B
+b1 %
+b10000001000100000000000000001 0
+b10000001000100000000000000001 @
+b10000 6
+b101 (
+b101 >
+b101 F
+b1000 5
+b1000 A
+1!
+#30
+0!
+#35
+b1 +
+b1 D
+b1 7
+0#
+b1 3
+b1 :
+b1 =
+b11 $
+b11 E
+b10 4
+b10 8
+b10 <
+01
+1&
+12
+b0 (
+b0 >
+b0 F
+b0 )
+b0 9
+b0 G
+b1000 ;
+b11 C
+b0 B
+b100000000000110000000000000001 0
+b100000000000110000000000000001 @
+b10100 6
+b10000 5
+b10000 A
+1!
+#40
+0!
+#45
+bx +
+bx D
+x#
+bx 3
+bx :
+bx =
+bx $
+bx E
+bx )
+bx 9
+bx G
+bx 7
+bx ;
+bx C
+bx B
+bx %
+bx 0
+bx @
+b11000 6
+bx (
+bx >
+bx F
+b10100 5
+b10100 A
+1!
+#50
+0!
+#55
+b11100 6
+b11000 5
+b11000 A
+1!
+#60
+0!
+#65
+b100000 6
+b11100 5
+b11100 A
+1!
+#70
+0!
+#75
+b100100 6
+b100000 5
+b100000 A
+1!
+#80
+0!
+#85
+b101000 6
+b100100 5
+b100100 A
+1!
+#90
+0!
+#95
+b101100 6
+b101000 5
+b101000 A
+1!
+#100
+0!
+#105
+b110000 6
+b101100 5
+b101100 A
+1!
+#110
+0!
+#115
+b110100 6
+b110000 5
+b110000 A
+1!
+#120
+0!
+#125
+b111000 6
+b110100 5
+b110100 A
+1!
+#130
+0!
+#135
+b111100 6
+b111000 5
+b111000 A
+1!
+#140
+0!
+#145
+b1000000 6
+b111100 5
+b111100 A
+1!
+#150
+0!
+#155
+b1000100 6
+b1000000 5
+b1000000 A
+1!
+#160
+0!
+#165
+b1001000 6
+b1000100 5
+b1000100 A
+1!
+#170
+0!
+#175
+b1001100 6
+b1001000 5
+b1001000 A
+1!
+#180
+0!
+#185
+b1010000 6
+b1001100 5
+b1001100 A
+1!
+#190
+0!
+#195
+b1010100 6
+b1010000 5
+b1010000 A
+1!
+#200
+0!
+#205
+b1011000 6
+b1010100 5
+b1010100 A
+1!
+#206

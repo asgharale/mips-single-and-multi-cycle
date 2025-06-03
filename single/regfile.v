@@ -1,52 +1,23 @@
 module RegFile (
-    input clk, 
-    input reset,
+    input clk, reset,
     input RegWrite,
     input [4:0] ReadReg1, ReadReg2, WriteReg,
     input [31:0] WriteData,
     output [31:0] ReadData1, ReadData2
 );
     reg [31:0] regs [31:0];
+    integer i;
 
     always @(posedge clk or posedge reset) begin
         if (reset) begin
-            regs[0] <= 0;
-            regs[1] <= 0;
-            regs[2] <= 0;
-            regs[3] <= 0;
-            regs[4] <= 0;
-            regs[5] <= 0;
-            regs[6] <= 0;
-            regs[7] <= 0;
-            regs[8] <= 0;
-            regs[9] <= 0;
-            regs[10] <= 0;
-            regs[11] <= 0;
-            regs[12] <= 0;
-            regs[13] <= 0;
-            regs[14] <= 0;
-            regs[15] <= 0;
-            regs[16] <= 0;
-            regs[17] <= 0;
-            regs[18] <= 0;
-            regs[19] <= 0;
-            regs[20] <= 0;
-            regs[21] <= 0;
-            regs[22] <= 0;
-            regs[23] <= 0;
-            regs[24] <= 0;
-            regs[25] <= 0;
-            regs[26] <= 0;
-            regs[27] <= 0;
-            regs[28] <= 0;
-            regs[29] <= 0;
-            regs[30] <= 0;
-            regs[31] <= 0;
-        end else if (RegWrite) begin
-            regs[WriteReg] <= WriteData;
+            for (i = 0; i < 32; i = i + 1)
+                regs[i] <= 0;  // Initialize all registers
+        end
+        else if (RegWrite && WriteReg != 0) begin
+            regs[WriteReg] <= WriteData;  // Skip $0
         end
     end
 
-    assign ReadData1 = regs[ReadReg1];
-    assign ReadData2 = regs[ReadReg2];
+    assign ReadData1 = (ReadReg1 == 0) ? 0 : regs[ReadReg1];
+    assign ReadData2 = (ReadReg2 == 0) ? 0 : regs[ReadReg2];
 endmodule
